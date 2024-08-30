@@ -21,11 +21,11 @@ const CustomCard = () => {
       <View style={styles.cardFooter}>
         <TouchableOpacity style={styles.footerButtons}>
           <Image source={require('../public/images/like.png')} style={styles.footerImage} />
-          <Text>123</Text>
+          <Text style={styles.cardDescription}>123</Text>
         </TouchableOpacity>
         <TouchableOpacity style={[styles.footerButtons]}>
           <Image source={require('../public/images/disLike.png')} style={[styles.footerImage,{marginTop:4}]} />
-          <Text>123</Text>
+          <Text style={styles.cardDescription}>123</Text>
         </TouchableOpacity>
       </View>
     </Card>
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
   },
   cardDescription:{
     fontFamily:'Archivo-Regular',
-    padding:10
+    padding:10,
+    color:'black'
   }
 });

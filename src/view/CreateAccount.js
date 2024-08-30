@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingHorizontal: 10,
     borderRadius: 5,
+    color:'#000'
   },
 
   ErrorInput: {
