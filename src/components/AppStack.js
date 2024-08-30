@@ -20,7 +20,7 @@ const AppStack = () => {
   return (
     <Stack.Navigator
       initialRouteName={
-        userData?.type === 'user' ? 'UserFeedStack' : 'AuthorityStack'
+        userData?.type === 'user' ? 'UserFeedStack' : 'UserFeedStack'
       }>
       <Stack.Screen
         name="Home"

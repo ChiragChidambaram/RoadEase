@@ -11,7 +11,7 @@ import CustomCard from '../components/Card';
 
 import { AuthorityPost } from '../api/commonApi';
 
-const FeedPage = () => {
+const MyReports = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [feedData, setFeedData] = useState([1, 2, 3, 4, 4, 5, 6, 7, 9]);
 
@@ -53,7 +53,7 @@ const FeedPage = () => {
   );
 };
 
-export default FeedPage;
+export default MyReports;
 
 const styles = StyleSheet.create({
   feedContainer: {
