@@ -11,14 +11,14 @@ import UserFeedScreen from './UserFeedScreen';
 //AuthorityScreen
 import AuthorityScreen from './AuthorityScreen';
 import IssuePreview from '../view/IssuePreview';
-import Header from './Header';
 import BackPage from './BackPage';
+import Insights from '../view/Insights';
 
 const Stack = createStackNavigator();
 
-export const AuthStack = () => {
+const AuthStack = () => {
   return (
-    <Stack.Navigator initialRouteName="IssuePreview">
+    <Stack.Navigator initialRouteName="UserFeedStack">
       <Stack.Screen
         name="Home"
         component={FrontScreen}
@@ -40,20 +40,20 @@ export const AuthStack = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="UserFeedScreen"
+        name="UserFeedStack"
         component={UserFeedScreen}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="AuthorityScreen"
+        name="AuthorityStack"
         component={AuthorityScreen}
         options={{headerShown: false}}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Insights"
         component={Insights}
         options={{headerShown: false}}
-      />
+      /> */}
       <Stack.Screen
         name="IssuePreview"
         component={IssuePreview}
@@ -64,3 +64,5 @@ export const AuthStack = () => {
     </Stack.Navigator>
   );
 };
+
+export default AuthStack;
