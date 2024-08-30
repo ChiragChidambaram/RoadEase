@@ -1,41 +1,77 @@
 import * as React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image, Text, View, StyleSheet } from 'react-native';
 
 import Header from './Header';
 import FeedPage from '../view/FeedPage';
 
 const Tab = createBottomTabNavigator();
 
+const TabIcon = ({ focused, title, icon }) => {
+  return (
+    <View style={styles.tabIconContainer}>
+      <Image
+        source={icon}
+        style={[styles.tabIcon, { tintColor: focused ? '#fff' : '#333' }]}
+      />
+      <Text style={[styles.tabText, { color: focused ? '#fff' : '#333' }]}>
+        {title}
+      </Text>
+    </View>
+  );
+};
+
 export default function AuthorityScreen() {
   return (
     <Tab.Navigator
-      initialRouteName="FeedScreen"
-      screenOptions={{
+      initialRouteName="Issues"
+      screenOptions={({ route }) => ({
         tabBarStyle: {
-          backgroundColor: '#f8f9fa', // Custom background color for the tab bar
-          borderTopWidth: 1,
+          backgroundColor: '#f8f9fa',
           borderTopColor: '#e0e0e0',
-          height: 60, // Adjust the height of the tab bar
+          height: 65,
         },
         tabBarLabelStyle: {
-          fontSize: 16, // Custom font size for tab labels
-          fontWeight: 'bold', // Custom font weight for tab labels
-          textAlign: 'center', // Center the text horizontally
-          alignSelf: 'center', // Center the text vertically
+          fontSize: 16,
+          fontWeight: 'bold',
+          textAlign: 'center',
+          alignSelf: 'center',
           justifyContent: 'center',
-          marginBottom: 20, // Remove margin to center the text vertically
-          flex: 1, // Take up full space
+          paddingTop:5,
+          marginBottom: 0, // Adjust margin for vertical alignment
+          flex: 1,
         },
-        tabBarActiveBackgroundColor: '#112D4E', // Background color for the active tab
-        tabBarInactiveBackgroundColor: '#D9D9D9', // Background color for inactive tabs
-        tabBarActiveTintColor: '#fff', // Text color for the active tab
-        tabBarInactiveTintColor: '#333', // Text color for inactive tabs
-        tabBarIcon: () => null, // Remove the icon
-      }}>
+        tabBarActiveBackgroundColor: '#112D4E',
+        tabBarInactiveBackgroundColor: "#D9D9D9",
+        tabBarActiveTintColor: '#fff',
+        tabBarInactiveTintColor: '#333',
+        tabBarIcon: ({ focused }) => {
+          let icon;
+          let title;
+
+          switch (route.name) {
+            case 'Issues':
+              icon = require('../public/images/home.png'); // Replace with your icon path
+              break;
+            case 'Insights':
+              icon = require('../public/images/insights.png'); // Replace with your icon path
+              break;
+            case 'Map':
+              icon = require('../public/images/broadcast.png'); // Replace with your icon path
+              break;
+            default:
+              icon = null;
+              title = '';
+          }
+
+          return <TabIcon focused={focused} title={title} icon={icon} />;
+        },
+      })}
+    >
       <Tab.Screen
-        name="FeedScreen"
+        name="Home"
         component={FeedPage}
-        options={({navigation}) => ({
+        options={({ navigation }) => ({
           header: () => <Header title="Issues" navigation={navigation} />,
         })}
       />
@@ -43,7 +79,7 @@ export default function AuthorityScreen() {
       <Tab.Screen
         name="Insights"
         component={FeedPage}
-        options={({navigation}) => ({
+        options={({ navigation }) => ({
           header: () => <Header title="Insights" navigation={navigation} />,
         })}
       />
@@ -51,10 +87,28 @@ export default function AuthorityScreen() {
       <Tab.Screen
         name="Map"
         component={FeedPage}
-        options={({navigation}) => ({
+        options={({ navigation }) => ({
           header: () => <Header title="Map" navigation={navigation} />,
         })}
       />
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  tabIconContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop:5
+  },
+  tabIcon: {
+    width: 24,
+    height: 24,
+    marginTop:10
+  },
+  tabText: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    display:'none',
+  },
+});
