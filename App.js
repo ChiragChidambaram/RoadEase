@@ -1,13 +1,12 @@
-
 import React from 'react';
 
-import { AuthStack } from './src/components/NavigationContainer';
-import { NavigationContainer } from '@react-navigation/native';
+import AuthStack from './src/components/AuthStack';
+import {NavigationContainer} from '@react-navigation/native';
 
 function App() {
   return (
     <NavigationContainer>
-      <AuthStack/>
+      <AuthStack />
     </NavigationContainer>
   );
 }
