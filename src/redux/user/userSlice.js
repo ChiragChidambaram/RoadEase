@@ -15,7 +15,8 @@ const userSlice = createSlice({
     },
     logoutUser(state, action) {},
     clearUser(state, action) {
-      (state.token = ''), (state.value = {});
+      state.token = '';
+      state.value = {};
     },
   },
 });
