@@ -1,9 +1,18 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import off from '../../assets/images/power-switch.png';
+import {useDispatch} from 'react-redux';
+import {clearUser} from '../redux/user/userSlice';
+import {RAsyncStorage} from '../utils/commonFunctions';
 
-const Header = ({ title }) => {
-    const navigation = useNavigation()
+const Header = ({title}) => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    console.log('HI');
+    dispatch(clearUser());
+    RAsyncStorage.clearAll();
+  };
+
   return (
     <View style={styles.feedContainer}>
       <View style={styles.feedHeader}>
@@ -11,16 +20,16 @@ const Header = ({ title }) => {
           <Image source={require('../public/images/logo.png')} />
           <Text style={styles.heading}>{title}</Text>
         </View>
-
-        <TouchableOpacity style={[styles.button]}>
-          <Image source={require('../public/images/Menu.png')} />
-        </TouchableOpacity>
-
-          {title === 'My Reports' && 
-          <TouchableOpacity onPress={()=>navigation.navigate('ReportScreen')} style={styles.button}>
-          <Image source={require('../public/images/add.png')} width={24} height={24}/>
-        </TouchableOpacity>
-          }
+        <View style={styles.headerLogo2}>
+          <TouchableOpacity
+            onPress={() => handleLogout()}
+            style={styles.button}>
+            <Image style={{width: 30, height: 30}} source={off} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button}>
+            <Image source={require('../public/images/Menu.png')} />
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
