@@ -13,7 +13,7 @@ export const axiosInstance = axios.create({
 
 axiosInstance.defaults.headers = {
   'Content-Type': 'application/json',
-  Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXF1ZXN0Ijp7InVzZXJfaWQiOjExLCJ1c2VyX2VtYWlsIjoiam9lbEBqb2VsLmNvbSIsInVzZXJfZmlyc3RfbmFtZSI6IkpvZWwiLCJ1c2VyX2xhc3RfbmFtZSI6IlByYWthc2giLCJ0eXBlIjoidXNlciIsImF1dGhvcml0eSI6MH0sImlhdCI6MTcyNTA0NjcxMX0.DYdIzeg3lmE-qqorGLNJNqnUUJvaloP3QH-tkUbGQs0',
+  Authorization: RAsyncStorage.getItem('token') || '',
 };
 
 const retryDelay = (retryNumber = 0) => {

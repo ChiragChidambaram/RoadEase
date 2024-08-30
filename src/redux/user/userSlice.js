@@ -1,18 +1,24 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {LocalStorage} from '../../util';
-import {LocalStorageKeys} from '../../helpers/constants';
 
 const userSlice = createSlice({
   name: 'user',
   initialState: {
+    token: '',
     value: {},
-    isLogout: false,
   },
   reducers: {
-    addUser(state, action) {},
+    addUser(state, action) {
+      state.value = action.payload;
+    },
+    setToken(state, action) {
+      state.token = action.payload;
+    },
     logoutUser(state, action) {},
+    clearUser(state, action) {
+      (state.token = ''), (state.value = {});
+    },
   },
 });
 
-export const {addUser, logoutUser} = userSlice.actions;
+export const {addUser, setToken, logoutUser, clearUser} = userSlice.actions;
 export default userSlice.reducer;

@@ -1,29 +1,13 @@
 import {createStackNavigator} from '@react-navigation/stack';
 
 import CreateAccount from '../view/CreateAccount';
-import FrontScreen from '../view/FrontScreen';
 import Login from '../view/login';
-import ReportPage from '../view/ReportPage';
-
-//UserFeedScreen
-import UserFeedScreen from './UserFeedScreen';
-
-//AuthorityScreen
-import AuthorityScreen from './AuthorityScreen';
-import IssuePreview from '../view/IssuePreview';
-import BackPage from './BackPage';
-import ImagePickerComponent from './FileUpload';
 
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator initialRouteName="UserFeedStack">
-      <Stack.Screen
-        name="Home"
-        component={FrontScreen}
-        options={{headerShown: false}}
-      />
+    <Stack.Navigator>
       <Stack.Screen
         name="CreateAccount"
         component={CreateAccount}
@@ -33,40 +17,6 @@ const AuthStack = () => {
         name="Login"
         component={Login}
         options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="ReportScreen"
-        component={ReportPage}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="UserFeedStack"
-        component={UserFeedScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="AuthorityStack"
-        component={AuthorityScreen}
-        options={{headerShown: false}}
-      />
-      {/* <Stack.Screen
-        name="Insights"
-        component={Insights}
-        options={{headerShown: false}}
-      /> */}
-      <Stack.Screen
-        name="IssuePreview"
-        component={IssuePreview}
-        options={({navigation, route}) => ({
-          header: () => <BackPage title="Home" navigation={navigation} />,
-        })}
-      />
-      <Stack.Screen
-        name="imageUpload"
-        component={ImagePickerComponent}
-        options={({navigation, route}) => ({
-          header: () => <BackPage title="Home" navigation={navigation} />,
-        })}
       />
     </Stack.Navigator>
   );
