@@ -12,13 +12,13 @@ import UserFeedScreen from './UserFeedScreen';
 import AuthorityScreen from './AuthorityScreen';
 import IssuePreview from '../view/IssuePreview';
 import BackPage from './BackPage';
-import Insights from '../view/Insights';
+import ImagePickerComponent from './FileUpload';
 
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator initialRouteName="UserFeedStack">
+    <Stack.Navigator initialRouteName="CreateAccount">
       <Stack.Screen
         name="Home"
         component={FrontScreen}
@@ -57,6 +57,13 @@ const AuthStack = () => {
       <Stack.Screen
         name="IssuePreview"
         component={IssuePreview}
+        options={({navigation, route}) => ({
+          header: () => <BackPage title="Home" navigation={navigation} />,
+        })}
+      />
+      <Stack.Screen
+        name="imageUpload"
+        component={ImagePickerComponent}
         options={({navigation, route}) => ({
           header: () => <BackPage title="Home" navigation={navigation} />,
         })}

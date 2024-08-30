@@ -7,11 +7,14 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import {Formik} from 'formik';
 import { useNavigation } from '@react-navigation/native';
 
 import { SignupSchema } from '../helper';
+import ImageUpload from '../components/imageUpload';
+
 
 const CreateAccount = () => {
   const navigation = useNavigation();
@@ -99,11 +102,17 @@ const CreateAccount = () => {
                 secureTextEntry
               />
 
+              <ImageUpload/>
 
             </ScrollView>
             <TouchableOpacity onPress={handleSubmit} style={styles.button}>
             <Text style={styles.buttonText}>Register</Text>
           </TouchableOpacity>
+
+          <View style={[styles.CreateText]}>
+            <Text style={{color:'#000'}}>Already have an account?</Text >
+            <Pressable onPress={()=>(navigation.navigate('Login'))}><Text style={{color:'#007AFF'}}>Login</Text></Pressable>
+          </View>
           </View>
         )}
       </Formik>
@@ -171,6 +180,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: 'red',
     marginBottom: 10,
+  },
+  CreateText:{
+    marginTop:20,
+    display:'flex',
+    flexDirection:"row",
+    justifyContent:"center",
+    alignContent:"center"
   }
 });
 

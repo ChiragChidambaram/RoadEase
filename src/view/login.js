@@ -77,7 +77,7 @@ const Login = () => {
           </TouchableOpacity>
 
           <View style={[styles.CreateText]}>
-            <Text>Create a new account?</Text >
+            <Text style={{color:'#000'}}>Create a new account?</Text >
             <Pressable onPress={()=>(navigation.navigate('CreateAccount'))}><Text style={{color:'#007AFF'}}>Register</Text></Pressable>
           </View>
           </View>
@@ -147,7 +147,8 @@ const styles = StyleSheet.create({
     display:'flex',
     flexDirection:"row",
     justifyContent:"center",
-    alignContent:"center"
+    alignContent:"center",
+    color:'#000'
   }
 });
 
