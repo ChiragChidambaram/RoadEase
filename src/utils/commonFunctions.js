@@ -29,7 +29,7 @@ export const getAgoTimeStrings = timestampInSeconds => {
   }
 };
 
-export const AsyncStorage = {
+export const RAsyncStorage = {
   setItem: async (key, value) => {
     await AsyncStorage.setItem(key, JSON.stringify(value));
   },

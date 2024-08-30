@@ -8,4 +8,5 @@ export const Url = {
 
 export const apiRoutes = {
   Register: () => 'v1/register',
+  Login: () => 'auth/signin',
 };
