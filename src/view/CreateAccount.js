@@ -13,6 +13,8 @@ import {Formik} from 'formik';
 import { useNavigation } from '@react-navigation/native';
 
 import { SignupSchema } from '../helper';
+import ImageUpload from '../components/imageUpload';
+
 
 const CreateAccount = () => {
   const navigation = useNavigation();
@@ -100,6 +102,7 @@ const CreateAccount = () => {
                 secureTextEntry
               />
 
+              <ImageUpload/>
 
             </ScrollView>
             <TouchableOpacity onPress={handleSubmit} style={styles.button}>
