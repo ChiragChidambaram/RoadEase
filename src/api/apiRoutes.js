@@ -7,6 +7,7 @@ export const Url = {
 };
 
 export const apiRoutes = {
-  Register: () => 'v1/register',
+  Register: () => 'auth/signup',
   Login: () => 'auth/signin',
+  AuthorityPost:()=>'post/get/community'
 };

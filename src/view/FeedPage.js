@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Image,
   StyleSheet,
@@ -9,9 +9,22 @@ import {
 } from 'react-native';
 import CustomCard from '../components/Card';
 
+import { AuthorityPost } from '../api/commonApi';
+
 const FeedPage = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [feedData, setFeedData] = useState([1, 2, 3, 4, 4, 5, 6, 7, 9]);
+
+
+  const getAllPosts = async ()=>{
+    const data = await AuthorityPost();
+    console.log(data);
+    
+  }
+
+  useEffect(()=>{
+    getAllPosts()
+  },[])
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -30,13 +43,13 @@ const FeedPage = () => {
     <View style={styles.feedContainer}>
       <FlatList
         data={feedData}
-        renderItem={(item, index) => <CustomCard key={index} />}
+        renderItem={(item, index) => <CustomCard key={`${index}`} />}
         keyExtractor={item => item.toString()}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       />
-    </View>
+    </View> 
   );
 };
 
