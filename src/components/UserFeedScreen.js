@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Header from './Header';
 import FeedPage from '../view/FeedPage';
-import Insights from '../view/Insights';
+import MyReports from './myReports';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,7 +43,7 @@ export default function UserFeedScreen() {
 
       <Tab.Screen
         name="MyReports"
-        component={Insights}
+        component={MyReports}
         options={({navigation}) => ({
           header: () => <Header title="My Reports" navigation={navigation} />,
         })}
