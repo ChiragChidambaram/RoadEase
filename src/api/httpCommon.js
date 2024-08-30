@@ -3,7 +3,7 @@ import axiosRetry from 'axios-retry';
 
 import {Url} from './apiRoutes';
 import {fortmatData, isEmptyObject} from '../utils';
-import {AsyncStorage} from '../utils/commonFunctions';
+import {RAsyncStorage} from '../utils/commonFunctions';
 import {NODE_ENV} from '@env';
 
 export const axiosInstance = axios.create({
@@ -13,7 +13,7 @@ export const axiosInstance = axios.create({
 
 axiosInstance.defaults.headers = {
   'Content-Type': 'application/json',
-  Authorization: AsyncStorage.getItem('token') || '',
+  Authorization: RAsyncStorage.getItem('token') || '',
 };
 
 const retryDelay = (retryNumber = 0) => {
