@@ -12,13 +12,12 @@ import UserFeedScreen from './UserFeedScreen';
 import AuthorityScreen from './AuthorityScreen';
 import IssuePreview from '../view/IssuePreview';
 import BackPage from './BackPage';
-import Insights from '../view/Insights';
 
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator initialRouteName="UserFeedStack">
+    <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
         name="Home"
         component={FrontScreen}
