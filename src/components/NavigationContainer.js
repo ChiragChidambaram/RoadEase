@@ -19,7 +19,7 @@ const Stack = createStackNavigator();
 export const AuthStack =()=>{
 
   return(
-      <Stack.Navigator initialRouteName='IssuePreview'>
+      <Stack.Navigator initialRouteName='CreateAccount'>
         <Stack.Screen name="Home" component={FrontScreen}  options={{ headerShown: false }}/>
         <Stack.Screen name="CreateAccount" component={CreateAccount}  options={{ headerShown: false }}/>
         <Stack.Screen name="Login" component={Login}  options={{ headerShown: false }}/>
