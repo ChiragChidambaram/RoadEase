@@ -1,6 +1,5 @@
 import {createStackNavigator} from '@react-navigation/stack';
 
-import FrontScreen from '../view/FrontScreen';
 import ReportPage from '../view/ReportPage';
 
 //UserFeedScreen
@@ -12,41 +11,35 @@ import IssuePreview from '../view/IssuePreview';
 import BackPage from './BackPage';
 import ImagePickerComponent from './FileUpload';
 import {useSelector} from 'react-redux';
+import {useEffect} from 'react';
 
 const Stack = createStackNavigator();
 
+const User = () => (
+  <Stack.Screen
+    name="UserFeedStack"
+    component={UserFeedScreen}
+    options={{headerShown: false}}
+  />
+);
+
+const Authority = () => (
+  <Stack.Screen
+    name="AuthorityStack"
+    component={AuthorityScreen}
+    options={{headerShown: false}}
+  />
+);
+
 const AppStack = () => {
   const userData = useSelector(state => state.user.value);
+  const token = useSelector(state => state.user.token);
+  useEffect(() => {}, [token]);
+
   return (
-    <Stack.Navigator
-      initialRouteName={
-        userData?.type === 'user' ? 'UserFeedStack' : 'UserFeedStack'
-      }>
-      <Stack.Screen
-        name="Home"
-        component={FrontScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="ReportScreen"
-        component={ReportPage}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="UserFeedStack"
-        component={UserFeedScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="AuthorityStack"
-        component={AuthorityScreen}
-        options={{headerShown: false}}
-      />
-      {/* <Stack.Screen
-        name="Insights"
-        component={Insights}
-        options={{headerShown: false}}
-      /> */}
+    <Stack.Navigator>
+      {userData.type === 'user' ? User() : Authority()}
+
       <Stack.Screen
         name="IssuePreview"
         component={IssuePreview}
