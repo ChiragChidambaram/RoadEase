@@ -15,32 +15,26 @@ import {useEffect} from 'react';
 
 const Stack = createStackNavigator();
 
-const User = () => (
-  <Stack.Screen
-    name="UserFeedStack"
-    component={UserFeedScreen}
-    options={{headerShown: false}}
-  />
-);
-
-const Authority = () => (
-  <Stack.Screen
-    name="AuthorityStack"
-    component={AuthorityScreen}
-    options={{headerShown: false}}
-  />
-);
-
 const AppStack = () => {
   const userData = useSelector(state => state.user.value);
   const token = useSelector(state => state.user.token);
-  useEffect(() => {}, [token]);
-
+  console.log({userData});
   return (
     <Stack.Navigator>
-      {userData.type === 'user' ? User() : Authority()}
-
-      <Stack.Screen
+      {userData && userData.type === 'user' ? (
+        <Stack.Screen
+          name="UserFeedStack"
+          component={UserFeedScreen}
+          options={{headerShown: false}}
+        />
+      ) : (
+        <Stack.Screen
+          name="AuthorityStack"
+          component={AuthorityScreen}
+          options={{headerShown: false}}
+        />
+      )}
+      {/* <Stack.Screen
         name="IssuePreview"
         component={IssuePreview}
         options={({navigation, route}) => ({
@@ -48,12 +42,12 @@ const AppStack = () => {
         })}
       />
       <Stack.Screen
-        name="imageUpload"
+        name="ImageUpload"
         component={ImagePickerComponent}
         options={({navigation, route}) => ({
           header: () => <BackPage title="Home" navigation={navigation} />,
-        })}
-      />
+        })} 
+      />*/}
     </Stack.Navigator>
   );
 };

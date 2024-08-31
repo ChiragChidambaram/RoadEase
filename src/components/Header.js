@@ -1,9 +1,30 @@
-import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, {useState} from 'react';
+import {
+  Image,
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import off from '../../assets/images/power-switch.png';
+import plus from '../../assets/images/plus.png';
+import {useDispatch} from 'react-redux';
+import {clearUser} from '../redux/user/userSlice';
+import {RAsyncStorage} from '../utils/commonFunctions';
+import ModalPage from './Modal';
 
-const Header = ({ title }) => {
-    const navigation = useNavigation()
+const Header = ({title}) => {
+  const [modalOpen, setModalOpen] = useState();
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(clearUser());
+    RAsyncStorage.clearAll();
+  };
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
   return (
     <View style={styles.feedContainer}>
       <View style={styles.feedHeader}>
@@ -11,17 +32,18 @@ const Header = ({ title }) => {
           <Image source={require('../public/images/logo.png')} />
           <Text style={styles.heading}>{title}</Text>
         </View>
-
-        <TouchableOpacity style={[styles.button]}>
-          <Image source={require('../public/images/Menu.png')} />
-        </TouchableOpacity>
-
-          {title === 'My Reports' && 
-          <TouchableOpacity onPress={()=>navigation.navigate('ReportScreen')} style={styles.button}>
-          <Image source={require('../public/images/add.png')} width={24} height={24}/>
-        </TouchableOpacity>
-          }
+        <View style={styles.headerLogo2}>
+          <TouchableOpacity onPress={() => openModal()} style={styles.button}>
+            <Image style={{width: 20, height: 20}} source={plus} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => handleLogout()}
+            style={styles.button}>
+            <Image style={{width: 30, height: 30}} source={off} />
+          </TouchableOpacity>
+        </View>
       </View>
+      <ModalPage modalVisible={modalOpen} setModalVisible={setModalOpen} />
     </View>
   );
 };
