@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { View, Image, TextInput, StyleSheet } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 
-const ImagePickerComponent = () => {
+const ImageUpload = (props) => {
+  const {setBase64Image}=props;
   const [imageUri, setImageUri] = useState(null);
   const [filename,SetFilename] = useState(null);
-  const [base64Image, setBase64Image] = useState(null);
 
   const selectImage = () => {
     launchImageLibrary(
@@ -23,7 +23,6 @@ const ImagePickerComponent = () => {
           SetFilename(response.assets[0].fileName)
           setImageUri(uri);
           setBase64Image(base64);
-          console.log(base64);
         }
       }
     );
@@ -42,7 +41,7 @@ const ImagePickerComponent = () => {
   );
 };
 
-export default ImagePickerComponent;
+export default ImageUpload;
 
 const styles = StyleSheet.create({
   container: {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -14,9 +14,11 @@ import {useNavigation} from '@react-navigation/native';
 
 import {SignupSchema} from '../helper';
 import ImageUpload from '../components/imageUpload';
+import { Register } from '../api/commonApi';
 
 const CreateAccount = () => {
   const navigation = useNavigation();
+
   return (
     <View style={[styles.container]}>
       <View style={styles.containerHeader}>
@@ -29,18 +31,20 @@ const CreateAccount = () => {
       <Text style={styles.textStyle}>Create Account</Text>
       <Formik
         initialValues={{
-          firstname: '',
-          lastname: '',
+          firstName: '',
+          lastName: '',
           email: '',
           phone: '',
-          password: '',
-          vehicaltype: '',
-          RegistrationNo: '',
+          password: ''
         }}
         validationSchema={SignupSchema}
-        onSubmit={values => {
-          // Handle form submission
-          navigation.navigate('Login');
+        onSubmit={async(values) => {
+          console.log("values", values);
+          const response = await Register(values)
+          if(response){
+            console.log("response",response);
+            navigation.navigate('Login');
+          }
         }}>
         {({
           handleChange,
@@ -54,40 +58,40 @@ const CreateAccount = () => {
             <ScrollView style={{flex: 6, backgroundColor: '#fff'}}>
               <TextInput
                 style={
-                  touched.firstname && errors.firstname
+                  touched.firstName && errors.firstName
                     ? styles.ErrorInput
                     : styles.input
                 }
                 placeholder={
-                  touched.firstname && errors.firstname
-                    ? errors.firstname
+                  touched.firstName && errors.firstName
+                    ? errors.firstName
                     : 'First Name'
                 }
                 placeholderTextColor={
-                  touched.firstname && errors.firstname ? '#FF0000' : '#888'
+                  touched.firstName && errors.firstName ? '#FF0000' : '#888'
                 }
-                onChangeText={handleChange('firstname')}
-                onBlur={handleBlur('firstname')}
-                value={values.firstname}
+                onChangeText={handleChange('firstName')}
+                onBlur={handleBlur('firstName')}
+                value={values.firstName}
               />
 
               <TextInput
                 style={
-                  touched.lastname && errors.lastname
+                  touched.lastName && errors.lastName
                     ? styles.ErrorInput
                     : styles.input
                 }
                 placeholder={
-                  touched.lastname && errors.lastname
-                    ? errors.lastname
+                  touched.lastName && errors.lastName
+                    ? errors.lastName
                     : 'Last Name'
                 }
                 placeholderTextColor={
-                  touched.lastname && errors.lastname ? '#FF0000' : '#888'
+                  touched.lastName && errors.lastName ? '#FF0000' : '#888'
                 }
-                onChangeText={handleChange('lastname')}
-                onBlur={handleBlur('lastname')}
-                value={values.lastname}
+                onChangeText={handleChange('lastName')}
+                onBlur={handleBlur('lastName')}
+                value={values.lastName}
               />
 
               <TextInput
@@ -144,8 +148,6 @@ const CreateAccount = () => {
                 value={values.password}
                 secureTextEntry
               />
-
-              <ImageUpload />
             </ScrollView>
             <TouchableOpacity onPress={handleSubmit} style={styles.button}>
               <Text style={styles.buttonText}>Register</Text>
@@ -225,6 +227,14 @@ const styles = StyleSheet.create({
     color: 'red',
     marginBottom: 10,
   },
+  CreateText:{
+    marginTop:20,
+    display:'flex',
+    flexDirection:"row",
+    justifyContent:"center",
+    alignContent:"center",
+    color:'#000'
+  }
 });
 
 export default CreateAccount;

@@ -13,6 +13,7 @@ import {
 import {Formik} from 'formik';
 
 import {ReportSchema} from '../helper';
+import ImageUpload from '../components/imageUpload';
 
 const ReportPage = () => {
   const tags = ['Mild', 'Moderate', 'Severe'];
@@ -96,10 +97,23 @@ const ReportPage = () => {
                     </TouchableOpacity>
                   ))}
                 </View>
+
+                <View style={{marginTop:50}}>
+                  <ImageUpload />
+                </View>
               </View>
+
               <View style={styles.container}>
-                <TouchableOpacity onPress={handleSubmit} style={styles.submitButton}>
-                  <Text style={[styles.buttonText,{color:'#fff',fontFamily:'Archivo-Bold'}]}>Raise an issue</Text>
+                <TouchableOpacity
+                  onPress={handleSubmit}
+                  style={styles.submitButton}>
+                  <Text
+                    style={[
+                      styles.buttonText,
+                      {color: '#fff', fontFamily: 'Archivo-Bold'},
+                    ]}>
+                    Raise an issue
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -167,7 +181,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    textAlign:'center',
+    textAlign: 'center',
+    color: '#000',
   },
   severityContainer: {
     display: 'flex',
@@ -184,6 +199,6 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#112D4E',
     borderRadius: 5,
-    color:'#fff'
+    color: '#fff',
   },
 });
