@@ -55,6 +55,7 @@ const Login = () => {
               console.log(res.data[0]);
               console.log('====================================');
               await RAsyncStorage.setItem('token', res?.data[0]?.access_token);
+              await RAsyncStorage.setItem('userData', res?.data[0]?.user);
               dispatch(setToken(res?.data[0]?.access_token));
               dispatch(addUser(res?.data[0]?.user[0]));
               Toast.show({

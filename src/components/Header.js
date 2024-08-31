@@ -3,12 +3,13 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import off from '../../assets/images/power-switch.png';
 import {useDispatch} from 'react-redux';
 import {clearUser} from '../redux/user/userSlice';
+import {RAsyncStorage} from '../utils/commonFunctions';
 
 const Header = ({title}) => {
   const dispatch = useDispatch();
   const handleLogout = () => {
-    console.log('HI');
     dispatch(clearUser());
+    RAsyncStorage.clearAll();
   };
 
   return (
@@ -23,9 +24,6 @@ const Header = ({title}) => {
             onPress={() => handleLogout()}
             style={styles.button}>
             <Image style={{width: 30, height: 30}} source={off} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
-            <Image source={require('../public/images/Menu.png')} />
           </TouchableOpacity>
         </View>
       </View>
